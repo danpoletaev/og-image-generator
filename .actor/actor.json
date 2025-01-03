@@ -1,0 +1,12 @@
+{
+	"actorSpecification": 1,
+	"name": "og-image-actor",
+	"title": "OG Image Generator",
+	"description": "Generate OG images dynamically from HTML templates.",
+	"version": "0.1",
+	"meta": {
+		"templateId": "ts-crawlee-puppeteer-chrome"
+	},
+	"input": "./input_schema.json",
+	"dockerfile": "./Dockerfile"
+}

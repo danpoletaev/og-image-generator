@@ -1,0 +1,27 @@
+{
+    "title": "OG Image Generator",
+    "type": "object",
+    "schemaVersion": 1,
+    "properties": {
+        "html": {
+            "title": "Template HTML page",
+            "type": "string",
+            "description": "HTML page that will be rendered to generate the OG image",
+            "editor": "textarea"
+        },
+        "templateData": {
+            "title": "Template Data that will be replaced in HTML",
+            "type": "object",
+            "description": "Data that will be replaced in the HTML page",
+            "example": {
+                "title": "This is title of the OG Image",
+                "description": "This is description of the OG Image"
+            },
+            "editor": "json"
+        }
+    },
+    "required": [
+        "html", 
+        "templateData"
+    ]
+}
