@@ -20,7 +20,7 @@ export const prepareHtml = ({ html, templateData }: ActorInput) => {
     let finalHtml = html;
 
     Object.entries(templateData).forEach(([key, value]) => {
-        finalHtml = finalHtml.replace(`{{${key}}}`, value);
+        finalHtml = finalHtml.replace(`{{${key}}}g`, value);
     });
 
     return finalHtml;
