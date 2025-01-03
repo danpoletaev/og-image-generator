@@ -33,7 +33,7 @@ await utils.puppeteer.saveSnapshot(page, { key: imageKey, saveHtml: false, scree
 
 // Get saved OG image public URL
 const ogImagesStore = await Actor.openKeyValueStore('og-images');
-const publicOgUrl = await ogImagesStore.getPublicUrl(imageKey);
+const publicOgUrl = await ogImagesStore.getPublicUrl(`${imageKey}.jpg`);
 
 // Push the public URL run output
 await Actor.pushData({ url: publicOgUrl });
