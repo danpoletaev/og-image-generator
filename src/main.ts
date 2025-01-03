@@ -29,10 +29,10 @@ await page.setContent(prepareHtml(actorInput!), {
 
 // Capture & save the screenshot
 const imageKey = `og-image-${uuidv4()}`;
-await utils.puppeteer.saveSnapshot(page, { key: imageKey, saveHtml: false, screenshotQuality: 100, keyValueStoreName: 'og-images' });
+await utils.puppeteer.saveSnapshot(page, { key: imageKey, saveHtml: false, screenshotQuality: 100 });
 
 // Get saved OG image public URL
-const ogImagesStore = await Actor.openKeyValueStore('og-images');
+const ogImagesStore = await Actor.openKeyValueStore();
 const publicOgUrl = await ogImagesStore.getPublicUrl(`${imageKey}.jpg`);
 
 // Push the public URL run output
