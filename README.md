@@ -1,97 +1,137 @@
-# TypeScript PuppeteerCrawler Actor template
+## What is OG Image Generator?
 
-This template is a production ready boilerplate for developing with `PuppeteerCrawler`. The `PuppeteerCrawler` provides a simple framework for parallel crawling of web pages using headless Chrome with Puppeteer. Since `PuppeteerCrawler` uses headless Chrome to download web pages and extract data, it is useful for crawling of websites that require to execute JavaScript.
+OG Image Generator is a tool that lets you dynamically create OG images from your HTML templates via an API. The tool is flexible, allowing you to use the default template or create fully custom templates.
 
-If you're looking for examples or want to learn more visit:
+To get started, simply add a template (you can use the default one), provide the template input data, and click the **"Save & Start"** button.
 
-- [Crawlee + Apify Platform guide](https://crawlee.dev/docs/guides/apify-platform)
-- [Examples](https://crawlee.dev/docs/examples/puppeteer-crawler)
+---
 
-## Included features
+## Example of the Output OG Image
 
-- **[Puppeteer Crawler](https://crawlee.dev/api/puppeteer-crawler/class/PuppeteerCrawler)** - simple framework for parallel crawling of web pages using headless Chrome with Puppeteer
-- **[Configurable Proxy](https://crawlee.dev/docs/guides/proxy-management#proxy-configuration)** - tool for working around IP blocking
-- **[Input schema](https://docs.apify.com/platform/actors/development/input-schema)** - define and easily validate a schema for your Actor's input
-- **[Dataset](https://docs.apify.com/sdk/js/docs/guides/result-storage#dataset)** - store structured data where each object stored has the same attributes
-- **[Apify SDK](https://docs.apify.com/api/client/js/)** - toolkit for building Actors
+![Example of the output](https://i.ibb.co/xM4vt5k/og-image-1055ac96-26f3-4f6c-9759-af4f0441c59a.jpg)
 
-## How it works
+> This is the default template you can use, or you can create your own custom HTML template. Learn more in the [Templating](#templating) section.
 
-1. `Actor.getInput()` gets the input from `INPUT.json` where the start urls are defined
-2.  Create a configuration for proxy servers to be used during the crawling with `Actor.createProxyConfiguration()` to work around IP blocking. Use Apify Proxy or your own Proxy URLs provided and rotated according to the configuration. You can read more about proxy configuration [here](https://crawlee.dev/api/core/class/ProxyConfiguration).
-3. Create an instance of Crawlee's Puppeteer Crawler with `new PuppeteerCrawler()`. You can pass [options](https://crawlee.dev/api/puppeteer-crawler/interface/PuppeteerCrawlerOptions) to the crawler constructor as:
-    - `proxyConfiguration` - provide the proxy configuration to the crawler
-    - `requestHandler` - handle each request with custom router defined in the `routes.ts` file.
-4. Handle requests with the custom router from `routes.ts` file. Read more about custom routing for the Cheerio Crawler [here](https://crawlee.dev/api/puppeteer-crawler/function/createPuppeteerRouter)
-    - Create a new router instance with `new createPuppeteerRouter()`
-    - Define default handler that will be called for all URLs that are not handled by other handlers by adding `router.addDefaultHandler(() => { ... })`
-    - Define additional handlers - here you can add your own handling of the page
-        ```javascript
-        router.addHandler('detail', async ({ request, page, log }) => {
-            const title = await page.title();
-            // You can add your own page handling here
+---
 
-            await Dataset.pushData({
-                url: request.loadedUrl,
-                title,
-            });
-        });
-        ```
-5. `crawler.run(startUrls);` start the crawler and wait for its finish
+## How to Use the API to Dynamically Generate OG Images
 
-## Resources
+Using the API to generate dynamic OG images is simple! Here's how:
 
-If you're looking for examples or want to learn more visit:
+```
+POST https://api.apify.com/v2/acts/<your_username>~og-image-generator/run-sync-get-dataset-items?token=<your_apify_token>
 
-- [Crawlee + Apify Platform guide](https://crawlee.dev/docs/guides/apify-platform)
-- [Documentation](https://crawlee.dev/api/playwright-crawler/class/PlaywrightCrawler) and [examples](https://crawlee.dev/docs/examples/playwright-crawler)
-- [Node.js tutorials](https://docs.apify.com/academy/node-js) in Academy
-- [How to scale Puppeteer and Playwright](https://blog.apify.com/how-to-scale-puppeteer-and-playwright/)
-- [Video guide on getting data using Apify API](https://www.youtube.com/watch?v=ViYYDHSBAKM)
-- [Integration with Make](https://apify.com/integrations), GitHub, Zapier, Google Drive, and other apps
-- A short guide on how to build web scrapers using code templates:
-
-[web scraper template](https://www.youtube.com/watch?v=u-i-Korzf8w)
-
-
-## Getting started
-
-For complete information [see this article](https://docs.apify.com/platform/actors/development#build-actor-locally). To run the actor use the following command:
-
-```bash
-apify run
+{
+    "html": "<!DOCTYPE html>\n<html lang=\"en\">...your_html_template...</html>",
+    "templateData": {
+        "category": "Technology",
+        "title": "How to create dynamic OG title for your web",
+        "logoUrl": "https://w7.pngwing.com/pngs/243/698/png-transparent-apify-logo-tech-companies.png",
+        "date": "January 3, 2025",
+        "author": "Daniil Poletaev",
+        "authorImage": "https://images.apifyusercontent.com/rO00zibE4A243KKKW3pwsdT-IXjgOFWuA2s4RJV_7VM/rs:fill:70:70/aHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSWRPZ1QxMHAxblVSbGhKZUswSlZUdXpLZzJmVWN6MkEtNGZka1hwVWRSX1NtOVFSZw"
+    }
+}
 ```
 
-## Deploy to Apify
+> DO NOT USE THE API IN A META TAG! Doing so will generate an image on every page reload and publicly expose your token.
 
-### Connect Git repository to Apify
+---
 
-If you've created a Git repository for the project, you can easily connect to Apify:
+## With OG Image Generator, You Can:
 
-1. Go to [Actor creation page](https://console.apify.com/actors/new)
-2. Click on **Link Git Repository** button
+- Generate dynamic OG images for your blog or other pages (e.g., article pages, author pages, category pages).
+- Use any HTML templates you want.
+- Utilize Tailwind CSS for styling your templates.
+- Pass any data needed for your template (e.g., title, author, date, etc.).
 
-### Push project on your local machine to Apify
+---
 
-You can also deploy the project on your local machine to Apify without the need for the Git repository.
+## How Many OG Images Can I Create?
 
-1. Log in to Apify. You will need to provide your [Apify API Token](https://console.apify.com/account/integrations) to complete this action.
+There’s no limit to how many images you can generate! The Actor itself is free to use, and you’ll only pay for computation units—approximately **$0.001 per image**, which is around **$1 for 1,000 images**.
 
-    ```bash
-    apify login
-    ```
+---
 
-2. Deploy your Actor. This command will deploy and build the Actor on the Apify Platform. You can find your newly created Actor under [Actors -> My Actors](https://console.apify.com/actors?tab=my).
+## Input
 
-    ```bash
-    apify push
-    ```
+To generate an OG image, you need to provide the following input:
 
-## Documentation reference
+```json
+{
+    "html": "<!DOCTYPE html>\n<html......</html>",
+    "templateData": {} // A flattened object containing the data to populate your HTML template. Each key must match a placeholder in your template (e.g., {{title}}).
+}
+```
 
-To learn more about Apify and Actors, take a look at the following resources:
+---
 
-- [Apify SDK for JavaScript documentation](https://docs.apify.com/sdk/js)
-- [Apify SDK for Python documentation](https://docs.apify.com/sdk/python)
-- [Apify Platform documentation](https://docs.apify.com/platform)
-- [Join our developer community on Discord](https://discord.com/invite/jyEM2PRvMU)
+## Templating
+
+You can add any data you need to the template. Make sure to wrap dynamic content keys in double curly braces (`{{}}`) in the HTML template:
+
+```html
+<p>{{title}}</p>
+<p>{{date}}</p>
+```
+
+Then, in the `templateData` object, provide the corresponding values:
+
+```json
+{
+    "title": "My first title",
+    "date": "January 3, 2025"
+}
+```
+
+The keys in your HTML and `templateData` must match exactly.
+> **Note:** All keys in `templateData` must be flattened—nested objects are not supported.
+
+---
+
+## Output Example in JSON
+
+Here’s a sample of the JSON response you'll receive
+
+```json
+{
+    "url": "https://api.apify.com/v2/key-value-stores/**********/records/og-image-**********.jpg"
+}
+```
+
+> Do not pass the image URL directly into the meta tag, as our default storage is temporary and will be removed after 7 days. Refer to the [documentation](https://docs.apify.com/platform/storage/usage#data-retention) for more details.
+> **Instead, save it to your storage (ideally with CDN enabled).**
+
+---
+
+## How to Generate Dynamic OG Images with HTML & Tailwind via API
+
+You can use Tailwind CSS to create templates for your OG images. To get started, use the **Play CDN** HTML template. [Check Tailwind documentation](https://tailwindcss.com/docs/installation/play-cdn).
+
+Here’s an example:
+
+```html
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <h1 class="text-3xl font-bold underline">
+    Hello world!
+  </h1>
+</body>
+</html>
+```
+
+---
+
+## Tips
+
+- DO NOT USE API IN THE META TAG! It will generate image on every page reload as well as it will expose your token publicly.
+- Instead, create an API endpoint, save image to your storage and cache the generated images to prevent redundant image generation (and unnecessary costs).
+
+---
+
