@@ -1,6 +1,5 @@
 import { Actor, log } from 'apify';
 import { launchPuppeteer, utils } from 'crawlee';
-import { v4 as uuidv4 } from 'uuid';
 import { ActorInput } from './types.js';
 import { prepareHtml, validateInput } from './utils.js';
 
@@ -28,7 +27,7 @@ await page.setContent(prepareHtml(actorInput!), {
 });
 
 // Capture & save the screenshot
-const imageKey = `og-image-${uuidv4()}`;
+const imageKey = `og-image-${crypto.randomUUID()}`;
 await utils.puppeteer.saveSnapshot(page, { key: imageKey, saveHtml: false, screenshotQuality: 100 });
 
 // Get saved OG image public URL
