@@ -32,6 +32,22 @@
                 "author": "Daniil Poletaev",
                 "authorImage": "https://images.apifyusercontent.com/rO00zibE4A243KKKW3pwsdT-IXjgOFWuA2s4RJV_7VM/rs:fill:70:70/aHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSWRPZ1QxMHAxblVSbGhKZUswSlZUdXpLZzJmVWN6MkEtNGZka1hwVWRSX1NtOVFSZw"
             }
+        },
+        "imageType": {
+            "title": "Image Type",
+            "type": "string",
+            "description": "Type of the image to be generated",
+            "enum": [
+                "png",
+                "jpeg",
+                "webp"
+            ],
+            "enumTitles": [
+                "PNG",
+                "JPEG",
+                "WEBP"
+            ],
+            "default": "webp"
         }
     },
     "required": [
