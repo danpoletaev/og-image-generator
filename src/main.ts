@@ -21,7 +21,7 @@ await page.setViewport({
     height: 630,
 });
 
-await page.setContent(prepareHtml(actorInput!), {
+await page.setContent(prepareHtml(actorInput), {
     waitUntil: ['domcontentloaded'],
     timeout: 5000,
 });

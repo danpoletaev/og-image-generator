@@ -5,7 +5,7 @@ import { ActorInput } from './types.js';
  * @throws Will throw an error if input is null,
  * or it does not contain html/templateData or if templateData does not have any keys. (It does not make sense to generate OG image without dynamic values)
  */
-export const validateInput = (actorInput: ActorInput | null) => {
+export const validateInput = (actorInput: ActorInput | null): asserts actorInput is ActorInput => {
     if (!actorInput) {
         throw new Error('Input  can not be null!');
     }
