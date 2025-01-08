@@ -57,7 +57,7 @@ There’s no limit to how many images you can generate! The Actor itself is free
 
 To generate an OG image, you need to provide the following input:
 
-```json
+```jsonc
 {
     "html": "<!DOCTYPE html>\n<html......</html>",
     "templateData": {} // A flattened object containing the data to populate your HTML template. Each key must match a placeholder in your template (e.g., {{title}}).
@@ -91,7 +91,7 @@ The keys in your HTML and `templateData` must match exactly.
 
 ## Output Example in JSON
 
-Here’s a sample of the JSON response you'll receive
+Here’s a sample of the JSON response you'll receive:
 
 ```json
 {
