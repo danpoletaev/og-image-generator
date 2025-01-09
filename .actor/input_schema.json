@@ -1,18 +1,57 @@
 {
-    "title": "PuppeteerCrawler Template",
+    "title": "OG Image Generator",
     "type": "object",
     "schemaVersion": 1,
     "properties": {
-        "startUrls": {
-            "title": "Start URLs",
-            "type": "array",
-            "description": "URLs to start with.",
-            "editor": "requestListSources",
-            "prefill": [
-                {
-                    "url": "https://apify.com"
-                }
-            ]
+        "html": {
+            "title": "Template HTML page",
+            "type": "string",
+            "description": "HTML page that will be rendered to generate the OG image",
+            "editor": "textarea",
+            "prefill": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-gray-100 text-gray-900 flex items-center justify-center h-screen\">\n\n  <!-- OG Image Container -->\n  <div class=\"relative bg-white w-[1200px] h-[630px] rounded-lg shadow-xl border border-gray-200 overflow-hidden\">\n    \n    <!-- Background Accent -->\n    <div class=\"absolute inset-0 bg-gradient-to-r from-indigo-100 via-pink-100 to-yellow-100 opacity-50\"></div>\n\n    <!-- Logo -->\n    <div class=\"absolute bottom-6 left-6\">\n      <img src=\"{{logoUrl}}\" alt=\"Blog Logo\" class=\"h-10\">\n    </div>\n\n    <!-- Content Wrapper -->\n    <div class=\"relative flex flex-col h-full p-16\">\n      \n      <!-- Blog Category -->\n      <div class=\"text-base uppercase tracking-wider text-indigo-500 font-semibold mb-6\">{{category}}</div>\n      \n      <!-- Blog Title -->\n      <h1 class=\"text-6xl font-bold leading-tight text-gray-800 mb-8\">{{title}}</h1>\n      \n      <!-- Author and Date -->\n      <div class=\"flex items-center space-x-6 text-gray-600 text-xl\">\n        <div class=\"flex items-center space-x-3\">\n          <img class=\"w-12 h-12 rounded-full\" src=\"{{authorImage}}\" alt=\"{{author}}\">\n          <span>{{author}}</span>\n        </div>\n        <span>&bull;</span>\n        <span>{{date}}</span>\n      </div>\n    </div>\n  </div>\n\n</body>\n</html>\n",
+            "example": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <script src=\"https://cdn.tailwindcss.com\"></script>\n</head>\n<body class=\"bg-gray-100 text-gray-900 flex items-center justify-center h-screen\">\n\n  <!-- OG Image Container -->\n  <div class=\"relative bg-white w-[1200px] h-[630px] rounded-lg shadow-xl border border-gray-200 overflow-hidden\">\n    \n    <!-- Background Accent -->\n    <div class=\"absolute inset-0 bg-gradient-to-r from-indigo-100 via-pink-100 to-yellow-100 opacity-50\"></div>\n\n    <!-- Logo -->\n    <div class=\"absolute bottom-6 left-6\">\n      <img src=\"{{logoUrl}}\" alt=\"Blog Logo\" class=\"h-10\">\n    </div>\n\n    <!-- Content Wrapper -->\n    <div class=\"relative flex flex-col h-full p-16\">\n      \n      <!-- Blog Category -->\n      <div class=\"text-base uppercase tracking-wider text-indigo-500 font-semibold mb-6\">{{category}}</div>\n      \n      <!-- Blog Title -->\n      <h1 class=\"text-6xl font-bold leading-tight text-gray-800 mb-8\">{{title}}</h1>\n      \n      <!-- Author and Date -->\n      <div class=\"flex items-center space-x-6 text-gray-600 text-xl\">\n        <div class=\"flex items-center space-x-3\">\n          <img class=\"w-12 h-12 rounded-full\" src=\"{{authorImage}}\" alt=\"{{author}}\">\n          <span>{{author}}</span>\n        </div>\n        <span>&bull;</span>\n        <span>{{date}}</span>\n      </div>\n    </div>\n  </div>\n\n</body>\n</html>\n"
+        },
+        "templateData": {
+            "title": "Template Data that will be replaced in HTML",
+            "type": "object",
+            "description": "Data that will be replaced in the HTML page",
+            "example": {
+                "category": "Technology",
+                "title": "How to create dynamic OG title for your web",
+                "logoUrl": "https://w7.pngwing.com/pngs/243/698/png-transparent-apify-logo-tech-companies.png",
+                "date": "January 3, 2025",
+                "author": "Daniil Poletaev",
+                "authorImage": "https://images.apifyusercontent.com/rO00zibE4A243KKKW3pwsdT-IXjgOFWuA2s4RJV_7VM/rs:fill:70:70/aHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSWRPZ1QxMHAxblVSbGhKZUswSlZUdXpLZzJmVWN6MkEtNGZka1hwVWRSX1NtOVFSZw"
+            },
+            "editor": "json",
+            "prefill": {
+                "category": "Technology",
+                "title": "How to create dynamic OG title for your web",
+                "logoUrl": "https://w7.pngwing.com/pngs/243/698/png-transparent-apify-logo-tech-companies.png",
+                "date": "January 3, 2025",
+                "author": "Daniil Poletaev",
+                "authorImage": "https://images.apifyusercontent.com/rO00zibE4A243KKKW3pwsdT-IXjgOFWuA2s4RJV_7VM/rs:fill:70:70/aHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSWRPZ1QxMHAxblVSbGhKZUswSlZUdXpLZzJmVWN6MkEtNGZka1hwVWRSX1NtOVFSZw"
+            }
+        },
+        "imageType": {
+            "title": "Image Type",
+            "type": "string",
+            "description": "Type of the image to be generated",
+            "enum": [
+                "png",
+                "jpeg",
+                "webp"
+            ],
+            "enumTitles": [
+                "PNG",
+                "JPEG",
+                "WEBP"
+            ],
+            "default": "webp"
         }
-    }
+    },
+    "required": [
+        "html",
+        "templateData"
+    ]
 }

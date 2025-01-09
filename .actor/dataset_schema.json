@@ -1,0 +1,23 @@
+{
+    "actorSpecification": 1,
+    "fields": {},
+    "views": {
+        "overview": {
+            "title": "Overview",
+            "transformation": {
+                "fields": [
+                    "url"
+                ]
+            },
+            "display": {
+                "component": "table",
+                "properties": {
+                    "url": {
+                        "label": "URL to download OG image",
+                        "format": "text"
+                    }
+                }
+            }
+        }
+    }
+}

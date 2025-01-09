@@ -1,12 +1,15 @@
 {
-	"actorSpecification": 1,
-	"name": "og-image-actor",
-	"title": "Project Puppeteer Crawler Typescript",
-	"description": "Crawlee and Puppeteer project in typescript.",
-	"version": "0.0",
-	"meta": {
-		"templateId": "ts-crawlee-puppeteer-chrome"
-	},
-	"input": "./input_schema.json",
-	"dockerfile": "./Dockerfile"
+    "actorSpecification": 1,
+    "name": "og-image-actor",
+    "title": "OG Image Generator",
+    "description": "Generate OG images dynamically from HTML templates.",
+    "version": "1.0",
+    "meta": {
+        "templateId": "ts-crawlee-puppeteer-chrome"
+    },
+    "input": "./input_schema.json",
+    "storages": {
+        "dataset": "./dataset_schema.json"
+    },
+    "dockerfile": "./Dockerfile"
 }

@@ -7,7 +7,7 @@
         "outDir": "dist",
         "noUnusedLocals": false,
         "skipLibCheck": true,
-        "lib": ["DOM"]
+        "lib": ["DOM", "es2021"],
     },
     "include": [
         "./src/**/*"
