@@ -30,7 +30,7 @@ await page.setContent(prepareHtml(actorInput), {
 const imageType = actorInput?.imageType ?? 'webp';
 const imageKey = `og-image-${crypto.randomUUID()}.${imageType}`;
 const screenshot = await page.screenshot({ type: imageType });
-await Actor.setValue(imageKey, screenshot, { contentType: `image/${imageType}` });
+await Actor.setValue('OUTPUT', screenshot, { contentType: `image/${imageType}` });
 
 // Get saved OG image public URL
 const ogImagesStore = await Actor.openKeyValueStore();
