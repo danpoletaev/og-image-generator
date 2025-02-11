@@ -7,8 +7,8 @@
 		"node": ">=18.0.0"
 	},
 	"dependencies": {
-		"apify": "^3.2.6",
-		"crawlee": "^3.11.5",
+		"apify": "/Users/daniilpoletaev/Documents/GitHub/apify-sdk-js/packages/apify",
+		"crawlee": "/Users/daniilpoletaev/Documents/GitHub/crawlee/packages/crawlee",
 		"puppeteer": "*"
 	},
 	"devDependencies": {

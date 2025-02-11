@@ -36,6 +36,8 @@ await Actor.setValue('OUTPUT', screenshot, { contentType: `image/${imageType}` }
 const ogImagesStore = await Actor.openKeyValueStore();
 const publicOgUrl = ogImagesStore.getPublicUrl(imageKey);
 
+log.info(publicOgUrl);
+
 // Push the public URL run output
 await Actor.pushData({ url: publicOgUrl });
 
