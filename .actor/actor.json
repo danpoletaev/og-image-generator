@@ -11,5 +11,7 @@
     "storages": {
         "dataset": "./dataset_schema.json"
     },
-    "dockerfile": "./Dockerfile"
+    "dockerfile": "./Dockerfile",
+    "minMemoryMbytes": 1024,
+    "maxMemoryMbytes": 1024
 }
